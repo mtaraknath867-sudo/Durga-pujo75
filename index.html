@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শারদীয় কুইজ প্রতিযোগিতা - শুভ মহালয়া অফার!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&family=Kalpurush:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kalpurush', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #e0f7fa 100%);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-bottom: 50px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            margin: 20px;
+            max-width: 850px;
+            width: 90%;
+            animation: fadeIn 1.2s ease-out;
+            border: 2px solid #ffccbc;
+            position: relative; /* নোটিফিকেশনের জন্য প্রয়োজন */
+            overflow: hidden; /* নোটিফিকেশন কন্টেনারের বাইরে না যাওয়ার জন্য */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-family: 'Shantell Sans', cursive;
+            color: #c2185b;
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
+        }
+        .prize-banner {
+            background-color: #ffc107;
+            color: #333;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: bounceIn 1s ease-out;
+            border: 3px dashed #e65100;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .offer-banner {
+            background-color: #ff8a65;
+            color: white;
+            padding: 18px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.6em;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            animation: pulse 1.8s infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.06); }
+        }
+
+        .rules-section {
+            background-color: #e8f5e9;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #a5d6a7;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .rules-section h2 {
+            font-family: 'Shantell Sans', cursive;
+            color: #2e7d32;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .rules-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .rules-section ul li {
+            font-size: 1.1em;
+            color: #424242;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+            text-align: left;
+        }
+        .rules-section ul li:before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+
+        .quiz-section {
+            margin-top: 35px;
+        }
+        h2.section-title {
+            font-family: 'Shantell Sans', cursive;
+            color: #1a237e;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+        }
+        .question-container {
+            margin-bottom: 25px;
+            text-align: left;
+            padding: 20px;
+            background-color: #fffde7;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            border: 1px solid #ffe0b2;
+        }
+        .question-container h3 {
+            font-family: 'Shantell Sans', cursive;
+            color: #0d47a1;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 12px;
+            padding: 12px;
+            background-color: #e1f5fe;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid #b3e5fc;
+        }
+        .options label:hover {
+            background-color: #a7d9f7;
+            transform: translateX(5px);
+        }
+        .options input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        .form-group {
+            margin-top: 35px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #d32f2f;
+            font-size: 1.1em;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="tel"] {
+            width: calc(100% - 24px);
+            padding: 14px;
+            border: 2px solid #ffccbc;
+            border-radius: 10px;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="tel"]:focus {
+            border-color: #e65100;
+            outline: none;
+        }
+        button {
+            background-color: #d32f2f;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #c62828;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        #result {
+            margin-top: 35px;
+            padding: 25px;
+            background-color: #e8f5e9;
+            border-radius: 15px;
+            border: 3px solid #66bb6a;
+            color: #2e7d32;
+            font-size: 1.6em;
+            font-weight: bold;
+            display: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .whatsapp-prompt {
+            color: #c2185b;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            animation: bounceText 2s infinite ease-in-out;
+        }
+        @keyframes bounceText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .whatsapp-button {
+            background-color: #25d366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .whatsapp-button:hover {
+            background-color: #1da851;
+            transform: translateY(-2px);
+        }
+        .whatsapp-button img {
+            margin-right: 10px;
+            height: 24px;
+            width: 24px;
+        }
+
+        /* --- নোটিফিকেশন CSS --- */
+        .notification-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .notification {
+            background-color: #4CAF50; /* সবুজ */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards; /* 4.5s পর ফেড আউট শুরু হবে */
+            width: 280px; /* নোটিফিকেশনের নির্দিষ্ট প্রস্থ */
+            box-sizing: border-box;
+        }
+        .notification.hidden {
+            display: none;
+        }
+        .notification i {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; display: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome আইকনের জন্য -->
+</head>
+<body>
+    <div class="container">
+        <h1>শারদীয় কুইজ প্রতিযোগিতা</h1>
+        <div class="offer-banner">শুভ মহালয়ার বিশেষ অফার!</div>
+        <div class="prize-banner">
+            জিতে নিন আকর্ষণীয় পুরস্কার: <br>
+            <span style="font-size: 1.5em; color: #d32f2f;">₹5000</span> এর শপিং ভাউচার!
+        </div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+        <!-- --- নিয়মাবলী সেকশন --- -->
+        <div class="rules-section">
+            <h2>গুরুত্বপূর্ণ নিয়মাবলী</h2>
+            <ul>
+                <li>✅ কুইজে অংশগ্রহণ করতে আপনার সঠিক নাম ও ফোন নম্বর দিন।</li>
+                <li>✅ বিজয়ী হতে হলে আপনাকে অবশ্যই আমাদের ফেসবুক পেজ (<a href="https://www.facebook.com/share/1D2oaBFcrr/" target="_blank">এখানে ক্লিক করুন</a>) ফলো করতে হবে।</li>
+                <li>✅ (<a href="https://getafilenow.com/show.php?l=0&u=2290794&id=70069ক" target="_blank">এখানে ক্লিক করুন</a>) তথ্য দিন আর জিতে নিন পুরস্কার!"</li> 
+                <li>✅ কুইজটি আপনার ফেসবুক বা ইনস্টাগ্রাম প্রোফাইলে পাবলিক পোস্ট হিসেবে শেয়ার করা আবশ্যক (আমাদের ট্যাগ করে)।</li>
+                <li>✅ কুইজটি আপনার হোয়াটসঅ্যাপ স্ট্যাটাসে শেয়ার করুন এবং আপনার ১০ জন বন্ধুকে ফরোয়ার্ড করুন।</li>
+                <li>✅ সকল শর্ত পূরণ না হলে পুরস্কারের জন্য বিবেচিত হবেন না।</li>
+                <li>✅ বিজয়ীদের সাথে ব্যক্তিগতভাবে যোগাযোগ করা হবে।</li>
+            </ul>
+        </div>
+        <!-- ----------------------- -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'aace65f4c73081a1abedbe3324274d3a85ff5d9f488', // এই কী টি আপনার জন্য প্রযোজ্য নাও হতে পারে।
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+        <div class="quiz-section">
+            <h2 class="section-title">কুইজে অংশ নিন!</h2>
+            <!-- প্রশ্ন ১ -->
+            <div class="question-container" id="q1">
+                <h3>১. দুর্গা পূজা মূলত কোন দেবীর পূজা?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> লক্ষ্মী</label>
+                    <label><input type="radio" name="q1" value="b"> সরস্বতী</label>
+                    <label><input type="radio" name="q1" value="c"> দুর্গা</label>
+                    <label><input type="radio" name="q1" value="d"> কালী</label>
+                </div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+            <!-- প্রশ্ন ২ -->
+            <div class="question-container" id="q2">
+                <h3>২. মহালয়াতে কোন পিতৃপুরুষদের তর্পণ করা হয়?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> শুধু পূর্বপুরুষ</label>
+                    <label><input type="radio" name="q2" value="b"> শুধু মাতামহ</label>
+                    <label><input type="radio" name="q2" value="c"> সকল পিতৃপুরুষ</label>
+                    <label><input type="radio" name="q2" value="d"> শুধু নিকটাত্মীয়</label>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৩ -->
+            <div class="question-container" id="q3">
+                <h3>৩. দুর্গা দেবীর কয়টি হাত?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> ৪</label>
+                    <label><input type="radio" name="q3" value="b"> ৬</label>
+                    <label><input type="radio" name="q3" value="c"> ৮</label>
+                    <label><input type="radio" name="q3" value="d"> ১০</label>
+                </div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+            <!-- প্রশ্ন ৪ -->
+            <div class="question-container" id="q4">
+                <h3>৪. দুর্গা পূজা কোন ঋতুতে অনুষ্ঠিত হয়?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> গ্রীষ্ম</label>
+                    <label><input type="radio" name="q4" value="b"> শরৎ</label>
+                    <label><input type="radio" name="q4" value="c"> বসন্ত</label>
+                    <label><input type="radio" name="q4" value="d"> শীত</label>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫ -->
+            <div class="question-container" id="q5">
+                <h3>৫. দুর্গা দেবীর বাহন কী?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> হাতি</label>
+                    <label><input type="radio" name="q5" value="b"> ঘোড়া</label>
+                    <label><input type="radio" name="q5" value="c"> সিংহ</label>
+                    <label><input type="radio" name="q5" value="d"> বাঘ</label>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৬ -->
+            <div class="question-container" id="q6">
+                <h3>৬. দুর্গা পূজার ষষ্ঠী তিথিতে কী করা হয়?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="a"> কুমারী পূজা</label>
+                    <label><input type="radio" name="q6" value="b"> কলাবউ স্থাপন</label>
+                    <label><input type="radio" name="q6" value="c"> দেবীর আবাহন</label>
+                    <label><input type="radio" name="q6" value="d"> সিঁদুর খেলা</label>
+                </div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+            <!-- প্রশ্ন ৭ -->
+            <div class="question-container" id="q7">
+                <h3>৭. রাবণের সাথে যুদ্ধের আগে রামচন্দ্র কোন দেবীর পূজা করেছিলেন?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> কালী</label>
+                    <label><input type="radio" name="q7" value="b"> দুর্গা</label>
+                    <label><input type="radio" name="q7" value="c"> সরস্বতী</label>
+                    <label><input type="radio" name="q7" value="d"> লক্ষ্মী</label>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৮ -->
+            <div class="question-container" id="q8">
+                <h3>৮. বিজয় দশমীর দিনে কী করা হয়?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> নতুন পোশাক পরা</label>
+                    <label><input type="radio" name="q8" value="b"> প্রতিমা বিসর্জন</label>
+                    <label><input type="radio" name="q8" value="c"> মিষ্টি বিতরণ</label>
+                    <label><input type="radio" name="q8" value="d"> সবগুলি</label>
+                </div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>
+            <!-- প্রশ্ন ৯ -->
+            <div class="question-container" id="q9">
+                <h3>৯. মহালয়া কোন মাসের অমাবস্যা তিথিতে হয়?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> ভাদ্র</label>
+                    <label><input type="radio" name="q9" value="b"> আশ্বিন</label>
+                    <label><input type="radio" name="q9" value="c"> কার্তিক</label>
+                    <label><input type="radio" name="q9" value="d"> পৌষ</label>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ১০ -->
+            <div class="question-container" id="q10">
+                <h3>১০. দুর্গা দেবীর অপর নাম কী?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> পার্বতী</label>
+                    <label><input type="radio" name="q10" value="b"> চণ্ডী</label>
+                    <label><input type="radio" name="q10" value="c"> অম্বিকা</label>
+                    <label><input type="radio" name="q10" value="d"> উপরের সবগুলি</label>
+                </div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'aace65f4c73081a1abedbe3104cb5710',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/aace65f4c73081a1abedbe3104cb5710/invoke.js"></script>      
+            <h2 class="section-title">আপনার তথ্য দিন</h2>
+            <div class="form-group">
+                <label for="name">আপনার নাম:</label>
+                <input type="text" id="name" placeholder="এখানে আপনার নাম লিখুন" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">আপনার ফোন নম্বর:</label>
+                <input type="tel" id="phone" placeholder="এখানে আপনার ফোন নম্বর লিখুন (যেমন: 01xxxxxxxxx)" pattern="[0-9]{10,11}" required>
+            </div>
+            
+            <button id="submitQuiz">ফলাফল দেখুন</button>
+        </div>
+
+        <div id="result"></div>
+        <!-- WhatsApp বাটন ফলাফলের নিচে যোগ করা হবে -->
+        <p id="whatsappPrompt" class="whatsapp-prompt" style="display: none;">
+            কুইজের তথ্য পাঠাতে <br> খুব শীঘ্রই WhatsApp এ সেন্ড করুন!
+        </p>
+        <a href="#" id="whatsappShareButton" class="whatsapp-button" style="display: none;" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png" alt="WhatsApp Icon">
+            হোয়াটসঅ্যাপে পাঠান
+        </a>
+    </div>
+
+    <!-- নোটিফিকেশন কন্টেইনার -->
+    <div class="notification-container" id="notificationContainer">
+        <!-- নোটিফিকেশনগুলি এখানে যোগ হবে JavaScript দ্বারা -->
+    </div>
+
+    <script>
+        const questions = [
+            { id: 'q1', answer: 'c' },
+            { id: 'q2', answer: 'c' },
+            { id: 'q3', answer: 'd' },
+            { id: 'q4', answer: 'b' },
+            { id: 'q5', answer: 'c' },
+            { id: 'q6', answer: 'c' },
+            { id: 'q7', answer: 'b' },
+            { id: 'q8', answer: 'd' },
+            { id: 'q9', answer: 'b' },
+            { id: 'q10', answer: 'd' }
+        ];
+
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const resultDiv = document.getElementById('result');
+        const quizSection = document.querySelector('.quiz-section');
+        const whatsappShareButton = document.getElementById('whatsappShareButton');
+        const whatsappPrompt = document.getElementById('whatsappPrompt');
+        const notificationContainer = document.getElementById('notificationContainer');
+
+        // সব প্রশ্ন এবং ফর্ম গ্রুপ প্রাথমিকভাবে দেখানোর জন্য
+        document.querySelectorAll('.question-container').forEach(q => q.style.display = 'block');
+
+        submitQuizBtn.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const myWhatsAppNumber = "917063749620"; // আপনার নতুন WhatsApp নম্বর, দেশের কোড সহ (91)
+
+            if (!name || !phone) {
+                alert('অনুগ্রহ করে আপনার নাম এবং ফোন নম্বর লিখুন।');
+                return;
+            }
+
+            let score = 0;
+            questions.forEach(q => {
+                const selectedOption = document.querySelector(`input[name="${q.id}"]:checked`);
+                if (selectedOption && selectedOption.value === q.answer) {
+                    score++;
+                }
+            });
+
+            resultDiv.innerHTML = `
+                <p>অভিনন্দন, ${name}!</p>
+                <p>আপনার ফোন নম্বর: ${phone}</p>
+                <p>আপনি ${questions.length}টি প্রশ্নের মধ্যে ${score}টি প্রশ্নের সঠিক উত্তর দিয়েছেন।</p>
+                <p>শুভ মহালয়া উপলক্ষে আপনার জন্য বিশেষ অফার! খুব শীঘ্রই আপনার সাথে যোগাযোগ করা হবে এবং পুরস্কারের বিস্তারিত জানানো হবে।</p>
+            `;
+            resultDiv.style.display = 'block';
+            quizSection.style.display = 'none';
+            document.querySelector('.prize-banner').style.display = 'none';
+            document.querySelector('.offer-banner').style.display = 'none';
+            document.querySelector('.rules-section').style.display = 'none';
+
+            const message = encodeURIComponent(`শারদীয় কুইজ প্রতিযোগিতা থেকে নতুন এন্ট্রি!\nনাম: ${name}\nফোন: ${phone}\nস্কোর: ${score}/${questions.length}`);
+            const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${message}`;
+            
+            whatsappShareButton.href = whatsappUrl;
+            whatsappShareButton.style.display = 'inline-flex';
+            whatsappPrompt.style.display = 'block';
+        });
+
+        // --- নোটিফিকেশন দেখানোর জন্য JavaScript কোড ---
+        const customerNotifications = [
+            "রোহান দাস কুইজে ₹5000 জিতেছেন!",
+            "সায়মা খাতুন কুইজে ₹5000 জিতেছেন!",
+            "আকাশ চক্রবর্তী কুইজে ₹5000 জিতেছেন!",
+            "নুসরাত জাহান কুইজে ₹5000 জিতেছেন!",
+            "দিব্যেন্দু পাল কুইজে ₹5000 জিতেছেন!",
+            "তানিয়া সরকার কুইজে ₹5000 জিতেছেন!",
+            "আরিফ আহমেদ কুইজে ₹5000 জিতেছেন!",
+            "শ্রেয়া ঘোষ কুইজে ₹5000 জিতেছেন!",
+            "রাজেশ কুমার কুইজে ₹5000 জিতেছেন!",
+            "মিতু রায় কুইজে ₹5000 জিতেছেন!"
+        ];
+
+        function showNotification(message) {
+            const notificationDiv = document.createElement('div');
+            notificationDiv.classList.add('notification');
+            notificationDiv.innerHTML = `<i class="fas fa-trophy"></i> ${message}`;
+            notificationContainer.prepend(notificationDiv); // নতুন নোটিফিকেশন উপরে যোগ হবে
+
+            // নির্দিষ্ট সময় পর নোটিফিকেশন সরিয়ে ফেলা
+            setTimeout(() => {
+                notificationDiv.classList.add('hidden'); // অ্যানিমেশন শেষ হলে ডিসপ্লে নন করার জন্য
+                setTimeout(() => {
+                    notificationDiv.remove();
+                }, 500); // fadeOut অ্যানিমেশনের সময় (0.5s)
+            }, 5000); // 5 সেকেন্ড পর নোটিফিকেশন গায়েব হবে
+        }
+
+        let notificationIndex = 0;
+        function startNotificationCycle() {
+            // শুধুমাত্র 10টি নোটিফিকেশন দেখানোর জন্য
+            if (notificationIndex < customerNotifications.length) {
+                showNotification(customerNotifications[notificationIndex]);
+                notificationIndex++;
+            } else {
+                notificationIndex = 0; // আবার প্রথম থেকে শুরু করতে চাইলে
+                // অথবা এখানে clearInterval(notificationInterval) ব্যবহার করে বন্ধ করে দিতে পারেন
+            }
+        }
+
+        // প্রতি 6 সেকেন্ড অন্তর একটি করে নোটিফিকেশন দেখান
+        const notificationInterval = setInterval(startNotificationCycle, 6000); // 5s দেখাবে, 1s গ্যাপ
+        
+        // পেজ লোড হওয়ার 1 সেকেন্ড পর প্রথম নোটিফিকেশন শুরু করুন
+        setTimeout(startNotificationCycle, 1000);
+
+    </script>
+</body>
+</html>
